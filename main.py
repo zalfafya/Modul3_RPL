@@ -1,3 +1,4 @@
+# Zalfa Afiah Syuhlah_F5212520037
 print("=== Kalkulator Terminal Modul 3 ===")
 angka1 = float(input("Masukkan angka pertama: "))
 angka2 = float(input("Masukkan angka kedua: "))
