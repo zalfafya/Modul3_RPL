@@ -1,3 +1,4 @@
+# Zalfa Afiah Syuhlah_F5212520037
 from config.database import Database
 
 class BukuModel:

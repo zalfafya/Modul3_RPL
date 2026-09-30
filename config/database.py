@@ -1,3 +1,4 @@
+# Zalfa Afiah Syuhlah_F5212520037
 import mysql.connector
 from mysql.connector import Error
 
