@@ -28,7 +28,7 @@ class BukuView(ctk.CTk):
         self.entry_penulis = ctk.CTkEntry(self.frame_kiri, placeholder_text="Masukkan Nama Penulis")
         self.entry_penulis.pack(pady=10, padx=15, fill="x")
         
-        self.entry_tahun = ctk.CTkEntry(self.frame_kiri, placeholder_text="Tahun Terbit (Misal: 2024)")
+        self.entry_tahun = ctk.CTkEntry(self.frame_kiri, placeholder_text="Tahun Main (Misal: 2024)")
         self.entry_tahun.pack(pady=10, padx=15, fill="x")
         
         # Tombol Aksi

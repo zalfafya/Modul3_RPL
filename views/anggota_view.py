@@ -8,9 +8,8 @@ class AnggotaView(ctk.CTk):
         self.title("Sistem Manajemen Perpustakaan - Data Anggota")
         self.geometry("800x450")
 
-        # Konfigurasi Grid Utama (1 Baris, 2 Kolom)
-        self.grid_columnconfigure(0, weight=1)  # Form Kiri
-        self.grid_columnconfigure(1, weight=2)  # Tabel Kanan
+        self.grid_columnconfigure(0, weight=1)  
+        self.grid_columnconfigure(1, weight=2)  
         self.grid_rowconfigure(0, weight=1)
 
         # FRAME KIRI: FORMULIR INPUT ANGGOTA
@@ -19,15 +18,12 @@ class AnggotaView(ctk.CTk):
 
         ctk.CTkLabel(self.frame_kiri, text="Form Data Anggota", font=("Arial", 16, "bold")).pack(pady=15)
 
-        # Input Nama Anggota
         self.entry_nama = ctk.CTkEntry(self.frame_kiri, placeholder_text="Masukkan Nama Anggota")
         self.entry_nama.pack(pady=10, padx=15, fill="x")
 
-        # Input Alamat
         self.entry_alamat = ctk.CTkEntry(self.frame_kiri, placeholder_text="Masukkan Alamat")
         self.entry_alamat.pack(pady=10, padx=15, fill="x")
 
-        # Tombol Aksi
         self.btn_simpan = ctk.CTkButton(self.frame_kiri, text="Simpan Data", fg_color="green")
         self.btn_simpan.pack(pady=10, padx=15, fill="x")
 
@@ -43,16 +39,13 @@ class AnggotaView(ctk.CTk):
 
         ctk.CTkLabel(self.frame_kanan, text="Daftar Anggota Perpustakaan", font=("Arial", 16, "bold")).pack(pady=15)
 
-        # Tabel Data Anggota
         kolom = ("id", "nama", "alamat")
         self.tabel = ttk.Treeview(self.frame_kanan, columns=kolom, show="headings", height=15)
 
-        # Header Tabel
         self.tabel.heading("id", text="ID")
         self.tabel.heading("nama", text="Nama Anggota")
         self.tabel.heading("alamat", text="Alamat")
 
-        # Lebar Kolom
         self.tabel.column("id", width=50, anchor="center")
         self.tabel.column("nama", width=180)
         self.tabel.column("alamat", width=220)
