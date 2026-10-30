@@ -8,25 +8,24 @@ class BukuController:
         self.model = BukuModel()
         self.view = BukuView()
         
-        # Penampung id_buku dari baris tabel yang diklik pengguna
         self.selected_id = None
 
-        # Menampilkan informasi role pada judul jendela aplikasi
         self.view.title(f"Sistem Manajemen Perpustakaan - Mode: {self.user_role.upper()}")
 
-        # Binding (mengikat) tombol di View ke fungsi Controller
+        # Binding tombol di View ke fungsi Controller
         self.view.btn_simpan.configure(command=self.simpan_data)
         
-        # Binding ke tombol sesuai nama variabel di buku_view.py (jika tombol tersedia di View)
         if hasattr(self.view, 'btn_update'):
             self.view.btn_update.configure(command=self.update_data)
         if hasattr(self.view, 'btn_delete'):
             self.view.btn_delete.configure(command=self.hapus_data)
+        if hasattr(self.view, 'btn_logout'):
+            self.view.btn_logout.configure(command=self.proses_logout)
         
-        # Event saat baris tabel diklik pengguna
+        # Event saat baris tabel diklik
         self.view.tabel.bind("<<TreeviewSelect>>", self.pilih_data_tabel)
 
-        # OTORISASI: Jika bukan admin, nonaktifkan form input dan tombol
+        # OTORISASI (TUGAS): Jika bukan admin, nonaktifkan form input dan tombol
         if self.user_role != 'admin':
             self.view.btn_simpan.configure(state="disabled", text="Akses Terkunci (Khusus Admin)")
             if hasattr(self.view, 'btn_update'):
@@ -38,7 +37,6 @@ class BukuController:
             self.view.entry_penulis.configure(state="disabled")
             self.view.entry_tahun.configure(state="disabled")
 
-        # Memuat data ke tabel saat aplikasi pertama kali dijalankan
         self.muat_data_tabel()
 
     def muat_data_tabel(self):
@@ -58,7 +56,6 @@ class BukuController:
             if values:
                 self.selected_id = values[0]
 
-                # Jika role adalah admin, baru tampilkan isi data ke form input
                 if self.user_role == 'admin':
                     self.view.entry_judul.delete(0, 'end')
                     self.view.entry_judul.insert(0, values[1])
@@ -70,7 +67,6 @@ class BukuController:
                     self.view.entry_tahun.insert(0, values[3])
 
     def simpan_data(self):
-        # Proteksi ganda di level Controller
         if self.user_role != "admin":
             messagebox.showerror("Akses Ditolak", "Anda tidak memiliki izin untuk menambah data!")
             return
@@ -93,7 +89,6 @@ class BukuController:
             messagebox.showerror("Error", "Gagal menyimpan data.")
 
     def update_data(self):
-        # Proteksi ganda di level Controller
         if self.user_role != "admin":
             messagebox.showerror("Akses Ditolak", "Anda tidak memiliki izin untuk memperbarui data!")
             return
@@ -120,7 +115,6 @@ class BukuController:
             messagebox.showerror("Error", "Gagal memperbarui data buku.")
 
     def hapus_data(self):
-        # Proteksi ganda di level Controller
         if self.user_role != "admin":
             messagebox.showerror("Akses Ditolak", "Anda tidak memiliki izin untuk menghapus data!")
             return
@@ -138,6 +132,13 @@ class BukuController:
                 self.muat_data_tabel()
             else:
                 messagebox.showerror("Error", "Gagal menghapus data buku.")
+
+    # Menutup jendela perpustakaan dan kembali ke halaman Login
+    def proses_logout(self):
+        from controllers.auth_controller import AuthController
+        self.view.destroy()
+        auth = AuthController()
+        auth.run()
 
     def bersihkan_form(self):
         self.selected_id = None
