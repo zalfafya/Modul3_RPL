@@ -43,6 +43,7 @@ class BukuView(ctk.CTk):
         self.btn_delete = ctk.CTkButton(self.frame_kiri, text="Hapus Data (Delete)", fg_color="red")
         self.btn_delete.pack(pady=5, padx=15, fill="x")
 
+        # Zalfa Afiah Syuhlah_037
         # 3. Tombol Logout (TUGAS)
         self.btn_logout = ctk.CTkButton(self.frame_kiri, text="Logout", fg_color="#555555", hover_color="#333333")
         self.btn_logout.pack(pady=15, padx=15, fill="x")

@@ -25,6 +25,7 @@ class BukuController:
         # Event saat baris tabel diklik
         self.view.tabel.bind("<<TreeviewSelect>>", self.pilih_data_tabel)
 
+        # Zalfa Afiah Syuhlah_037
         # OTORISASI (TUGAS): Jika bukan admin, nonaktifkan form input dan tombol
         if self.user_role != 'admin':
             self.view.btn_simpan.configure(state="disabled", text="Akses Terkunci (Khusus Admin)")
@@ -48,6 +49,7 @@ class BukuController:
         for buku in data_buku:
             self.view.tabel.insert("", "end", values=(buku['id_buku'], buku['judul'], buku['penulis'], buku['tahun_terbit']))
 
+    # Zalfa Afiah Syuhlah_037
     def pilih_data_tabel(self, event):
         selected_item = self.view.tabel.selection()
         if selected_item:
@@ -66,6 +68,7 @@ class BukuController:
                     self.view.entry_tahun.delete(0, 'end')
                     self.view.entry_tahun.insert(0, values[3])
 
+    # Zalfa Afiah Syuhlah_037
     def simpan_data(self):
         if self.user_role != "admin":
             messagebox.showerror("Akses Ditolak", "Anda tidak memiliki izin untuk menambah data!")
@@ -88,6 +91,7 @@ class BukuController:
         else:
             messagebox.showerror("Error", "Gagal menyimpan data.")
 
+    # Zalfa Afiah Syuhlah_037
     def update_data(self):
         if self.user_role != "admin":
             messagebox.showerror("Akses Ditolak", "Anda tidak memiliki izin untuk memperbarui data!")
@@ -114,6 +118,7 @@ class BukuController:
         else:
             messagebox.showerror("Error", "Gagal memperbarui data buku.")
 
+    # Zalfa Afiah Syuhlah_037
     def hapus_data(self):
         if self.user_role != "admin":
             messagebox.showerror("Akses Ditolak", "Anda tidak memiliki izin untuk menghapus data!")
@@ -133,6 +138,7 @@ class BukuController:
             else:
                 messagebox.showerror("Error", "Gagal menghapus data buku.")
 
+    # Zalfa Afiah Syuhlah_037
     # Menutup jendela perpustakaan dan kembali ke halaman Login
     def proses_logout(self):
         from controllers.auth_controller import AuthController

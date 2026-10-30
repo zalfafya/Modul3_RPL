@@ -26,6 +26,7 @@ class UserModel:
             return user
         return None
 
+    # Zalfa Afiah Syuhlah_037
     # Tugas: menyimpan pengguna baru ke basis data dengan kata sandi terenkripsi SHA-256
     def register_user(self, username, password, role="anggota"):
         if self.conn:
@@ -43,3 +44,4 @@ class UserModel:
                 cursor.close()
                 return False
         return False
+    
